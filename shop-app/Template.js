@@ -3,7 +3,7 @@ import {  } from 'react-native';
 
 const Template = props => {
   return (
-
+    {}
   );
 };
 

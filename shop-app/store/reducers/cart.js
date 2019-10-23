@@ -1,7 +1,7 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart';
-import { ADD_ORDER } from '../actions/orders';
-import { DELETE_PRODUCT } from '../actions/products';
-import CartItem from '../../models/cart-item';
+import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/cart";
+import { ADD_ORDER } from "../actions/orders";
+import { DELETE_PRODUCT } from "../actions/products";
+import CartItem from "../../models/cart-item";
 
 const initialState = {
   items: {},
@@ -39,7 +39,12 @@ export default (state = initialState, action) => {
       let updateCartItems;
       if (currentQty > 1) {
         // need to reduce it, not erase it
-        const updateCartItem = new CartItem(selectedCartItem.quantity - 1, selectedCartItem.productPrice, selectedCartItem.productTitle, selectedCartItem.sum - selectedCartItem.productPrice);
+        const updateCartItem = new CartItem(
+          selectedCartItem.quantity - 1,
+          selectedCartItem.productPrice,
+          selectedCartItem.productTitle,
+          selectedCartItem.sum - selectedCartItem.productPrice
+        );
         updateCartItems = { ...state.items, [action.pid]: updateCartItem };
       } else {
         updateCartItems = { ...state.items };
@@ -56,13 +61,13 @@ export default (state = initialState, action) => {
       if (!state.items[action.pid]) {
         return state;
       }
-      updateCartItems = {...state.items};
+      updateCartItems = { ...state.items };
       const itemTotal = state.items[action.pid].sum;
       delete updateCartItems[action.pid];
       return {
         ...state,
         items: updateCartItems,
-        totalAmount: state.totalAmount - itemTotal,
+        totalAmount: state.totalAmount - itemTotal
       };
   }
   return state;
