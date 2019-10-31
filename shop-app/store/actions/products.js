@@ -9,9 +9,10 @@ export const fetchProducts = () => {
   return async (dispatch, getState) => {
     // Any async code you want!
     const userId = getState().auth.userId;
+    console.log(userId);
     try {
       const response = await fetch(
-        "https://rn-complete-guide-81cf2.firebaseio.com/products.json"
+        "https://rn-complete-guide-d616b.firebaseio.com/products.json"
         // method: 'GET', don't neet to add this. It is the default for 'fetch()'
         // GET request also doesn't need 'headers'
         // headers: {
@@ -19,6 +20,7 @@ export const fetchProducts = () => {
         // },
       );
 
+      console.log(response.ok);
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
@@ -55,7 +57,7 @@ export const deleteProduct = producId => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `https://rn-complete-guide-81cf2.firebaseio.com/products/${producId}.json?auth=${token}`,
+      `https://rn-complete-guide-d616b.firebaseio.com/products/${producId}.json?auth=${token}`,
       {
         method: "DELETE"
       }
@@ -77,7 +79,7 @@ export const createProduct = (title, description, imageUrl, price) => {
     // Any async code you want!
     // 'await fetch()' gets a response from the promise (equivalent to .then() followed by .catch())
     const response = await fetch(
-      `https://rn-complete-guide-81cf2.firebaseio.com/products.json?auth=${token}`,
+      `https://rn-complete-guide-d616b.firebaseio.com/products.json?auth=${token}`,
       {
         method: "POST",
         headers: {
@@ -121,7 +123,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `https://rn-complete-guide-81cf2.firebaseio.com/products/${id}.json?auth=${token}`,
+      `https://rn-complete-guide-d616b.firebaseio.com/products/${id}.json?auth=${token}`,
       {
         method: "PATCH",
         headers: {

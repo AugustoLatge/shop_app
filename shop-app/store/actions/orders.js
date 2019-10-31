@@ -8,7 +8,7 @@ export const fetchOrders = () => {
     const userId = getState().auth.userId;
     try {
       const response = await fetch(
-        `https://rn-complete-guide-81cf2.firebaseio.com/orders/${userId}.json`
+        `https://rn-complete-guide-d616b.firebaseio.com/orders/${userId}.json`
       );
 
       if (!response.ok) {
@@ -42,7 +42,7 @@ export const addOrder = (cartItems, totalAmount) => {
     const userId = getState().auth.userId;
     const date = new Date();
     const response = await fetch(
-      `https://rn-complete-guide-81cf2.firebaseio.com/orders/${userId}.json?auth=${token}`,
+      `https://rn-complete-guide-d616b.firebaseio.com/orders/${userId}.json?auth=${token}`,
       {
         method: "POST",
         headers: {
